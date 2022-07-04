@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row text-center">
-    <div class="col-md-12 mt-2">
+    <div class="col-lg-6 col-md-6 col-xs-12">
 
       <div class="vara"></div>
       <div>
-        <img src="\assets\imagen.png" #ruleta (click)="girar()">
+        <img src="\assets\imagen.png" class="img-fluid cursor" #ruleta (click)="girar()">
       </div>
       <div>
-        <div id="sonido" style="display: none;">
-          <iframe src="\assets\ruleta.mp3" id="audio"></iframe>
-        </div>
+        <audio #sonido src="\assets\ruleta.mp3"></audio>
       </div>
 
     </div>
   </div>
 </div>
+
+

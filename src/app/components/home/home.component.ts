@@ -9,24 +9,56 @@ import Swal from 'sweetalert2';
 export class HomeComponent{
 
   @ViewChild('ruleta') ruleta!:ElementRef;
+  @ViewChild('sonido') sonido!:ElementRef;
   giros=0;
   vueltas=3;
   valor:any;
+  tema:any;
 
   constructor() {}
-
-
 
   girar(){
       if(this.giros<this.vueltas){
           let rand=Math.random()*7200;
           this.calcular(rand);
           this.giros++;
+          this.sonido.nativeElement.play();
       }
     }
 
-    premio(premios: string){
-      //document.querySelector('.elije').innerHTML = 'TU CORTESIA ES: ' + premios;
+    premio(departamento: string){
+      let randP=Math.floor((Math.random() * 7) + 1);
+      switch (randP) {
+        case 1:
+        this.tema="El tema a preguntar es: Clima";
+        break;
+        case 2:
+        this.tema="El tema a preguntar es: Capital";
+        break;
+        case 3:
+        this.tema="El tema a preguntar es: Baile";
+        break;
+        case 4:
+        this.tema="El tema a preguntar es: Hidrografía";
+        break;
+        case 5:
+        this.tema="El tema a preguntar es: Relieve";
+        break;
+        case 6:
+        this.tema="El tema a preguntar es: Comida";
+        break;
+        case 7:
+        this.tema="El tema a preguntar es: Economía";
+        break;
+      }
+      Swal.fire(
+        {
+          icon: 'warning',
+          title: 'Pregunta sobre el departamento de: '+departamento,
+          text: 'Para contestar la pregunta primero debe identificar el mapa del departamento',
+          footer: this.tema
+        });
+      console.log("Departamento: "+departamento);
     }
 
     calcular(rand:number) {
@@ -34,6 +66,8 @@ export class HomeComponent{
       this.valor = rand / 360;
       this.valor = (this.valor - parseInt(this.valor.toString().split(".")[0]))* 360;
       this.ruleta.nativeElement.style.transform = `rotate(${rand}deg)`;
+
+      console.log("Valor random: "+rand);
 
       setTimeout(() => {
       switch (true) {
@@ -133,9 +167,8 @@ export class HomeComponent{
          case this.valor > 348.75 && this.valor <= 360:
          this.premio("VICHADA");
          break;
-
-      }
-
+       }
+       console.log("Valor case: "+this.valor);
      }, 5000);
 
     }
