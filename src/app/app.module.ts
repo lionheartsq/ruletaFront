@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +27,8 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 
 import { HomeComponent } from './components/home/home.component';
+import { TriviaComponent } from './components/trivia/trivia.component';
+import { ResumenComponent } from './components/resumen/resumen.component';
 
 registerLocaleData(localeEs, 'es');
 
@@ -37,6 +40,7 @@ const materialModules = [
   MatFormFieldModule,
   MatProgressBarModule,
   MatProgressSpinnerModule,
+  MatRadioModule,
   MatTabsModule,
   MatListModule,
   MatIconModule,
@@ -52,7 +56,9 @@ const materialModules = [
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    TriviaComponent,
+    ResumenComponent
   ],
   imports: [
     BrowserModule,
