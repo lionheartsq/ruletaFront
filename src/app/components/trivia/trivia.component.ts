@@ -26,8 +26,9 @@ export class TriviaComponent{
       }
     }
 
-    premio(departamento: string){
+    premio(departamento: string, idDepartamento:number){
       let randP=Math.floor((Math.random() * 7) + 1);
+      let randDepartamento=Math.floor((Math.random() * 32) + 1);
       switch (randP) {
         case 1:
         this.tema="El tema a preguntar es: Clima";
@@ -51,13 +52,35 @@ export class TriviaComponent{
         this.tema="El tema a preguntar es: Economía";
         break;
       }
-      Swal.fire(
-        {
-          icon: 'warning',
+      var urlImg='\\assets\\'+randDepartamento+'.png';
+      Swal.fire({
           title: 'Pregunta sobre el departamento de: '+departamento,
-          text: 'Para contestar la pregunta primero debe identificar el mapa del departamento',
-          footer: this.tema
-        });
+          imageUrl: urlImg,
+          imageWidth: 300,
+          imageHeight: 300,
+          text: 'Para contestar la pregunta primero debe identificar el mapa del departamento. ¿La figura es correcta?',
+          footer: this.tema,
+          showDenyButton: true,
+          confirmButtonText: 'Si',
+          denyButtonText: `No`,
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            if(randDepartamento==idDepartamento){
+              Swal.fire('Respuesta correcta', '', 'success')
+            }
+            else{
+              Swal.fire('Respuesta incorrecta', '', 'error')
+            }
+          } else if (result.isDenied) {
+            if(randDepartamento!=idDepartamento){
+              Swal.fire('Respuesta correcta', '', 'success')
+            }
+            else{
+              Swal.fire('Respuesta incorrecta', '', 'error')
+            }
+          }
+        })
       console.log("Departamento: "+departamento);
     }
 
@@ -72,100 +95,100 @@ export class TriviaComponent{
       setTimeout(() => {
       switch (true) {
          case this.valor > 0 && this.valor <= 11.25:
-         this.premio("AMAZONAS");
+         this.premio("AMAZONAS",1);
          break;
          case this.valor > 11.25 && this.valor <= 22.5:
-         this.premio("ANTIOQUIA");
+         this.premio("ANTIOQUIA",2);
          break;
          case this.valor > 22.5 && this.valor <= 33.75:
-         this.premio("ARAUCA");
+         this.premio("ARAUCA",3);
          break;
          case this.valor > 33.75 && this.valor <= 45:
-         this.premio("ATLÁNTICO");
+         this.premio("ATLÁNTICO",4);
          break;
          case this.valor > 45 && this.valor <= 56.25:
-         this.premio("BOLIVAR");
+         this.premio("BOLIVAR",5);
          break;
          case this.valor > 56.25 && this.valor <= 67.5:
-         this.premio("BOYACA");
+         this.premio("BOYACA",6);
          break;
          case this.valor > 67.5 && this.valor <= 78.75:
-         this.premio("CALDAS");
+         this.premio("CALDAS",7);
          break;
          case this.valor > 78.75 && this.valor <= 90:
-         this.premio("CAQUETA");
+         this.premio("CAQUETA",8);
          break;
          case this.valor > 90 && this.valor <= 101.25:
-         this.premio("CASANARE");
+         this.premio("CASANARE",9);
          break;
          case this.valor > 101.25 && this.valor <= 112.5:
-         this.premio("CAUCA");
+         this.premio("CAUCA",10);
          break;
          case this.valor > 112.5 && this.valor <= 123.75:
-         this.premio("CESAR");
+         this.premio("CESAR",11);
          break;
          case this.valor > 123.75 && this.valor <= 135:
-         this.premio("CHOCÓ");
+         this.premio("CHOCÓ",12);
          break;
          case this.valor > 135 && this.valor <= 146.25:
-         this.premio("CORDOBA");
+         this.premio("CORDOBA",13);
          break;
          case this.valor > 146.25 && this.valor <= 157.5:
-         this.premio("CUNDINAMARCA ");
+         this.premio("CUNDINAMARCA",14);
          break;
          case this.valor > 157.5 && this.valor <= 168.75:
-         this.premio("GUAINIA");
+         this.premio("GUAINIA",15);
          break;
          case this.valor > 168.75 && this.valor <= 180:
-         this.premio("GUAJIRA");
+         this.premio("GUAJIRA",16);
          break;
          case this.valor > 180 && this.valor <= 191.25:
-         this.premio("GUAVIARE");
+         this.premio("GUAVIARE",17);
          break;
          case this.valor > 191.25 && this.valor <= 202.5:
-         this.premio("HUILA");
+         this.premio("HUILA",18);
          break;
          case this.valor > 202.5 && this.valor <= 213.75:
-         this.premio("MAGDALENA");
+         this.premio("MAGDALENA",19);
          break;
          case this.valor > 213.75 && this.valor <= 225:
-         this.premio("META");
+         this.premio("META",20);
          break;
          case this.valor > 225 && this.valor <= 236.25:
-         this.premio("NARIÑO");
+         this.premio("NARIÑO",21);
          break;
          case this.valor > 236.25 && this.valor <= 247.5:
-         this.premio("NORTE DE SANTANDER");
+         this.premio("NORTE DE SANTANDER",22);
          break;
          case this.valor > 247.5 && this.valor <= 258.75:
-         this.premio("PUTUMAYO");
+         this.premio("PUTUMAYO",23);
          break;
          case this.valor > 258.75 && this.valor <= 270:
-         this.premio("QUINDIO");
+         this.premio("QUINDIO",24);
          break;
          case this.valor > 270 && this.valor <= 281.25:
-         this.premio("RISARALDA");
+         this.premio("RISARALDA",25);
          break;
          case this.valor > 281.25 && this.valor <= 292.5:
-         this.premio("SAN ANDRES Y PROVIDENCIA");
+         this.premio("SAN ANDRES Y PROVIDENCIA",26);
          break;
          case this.valor > 292.5 && this.valor <= 303.75:
-         this.premio("SANTANDER");
+         this.premio("SANTANDER",27);
          break;
          case this.valor > 303.75 && this.valor <= 315:
-         this.premio("SUCRE");
+         this.premio("SUCRE",28);
          break;
          case this.valor > 315 && this.valor <= 326.25:
-         this.premio("TOLIMA");
+         this.premio("TOLIMA",29);
          break;
          case this.valor > 326.25 && this.valor <= 337.5:
-         this.premio("VALLE DEL CAUCA ");
+         this.premio("VALLE DEL CAUCA",30);
          break;
          case this.valor > 337.5 && this.valor <= 348.75:
-         this.premio("VAUPES");
+         this.premio("VAUPES",31);
          break;
          case this.valor > 348.75 && this.valor <= 360:
-         this.premio("VICHADA");
+         this.premio("VICHADA",32);
          break;
        }
        console.log("Valor case: "+this.valor);
