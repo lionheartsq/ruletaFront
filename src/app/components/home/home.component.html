@@ -29,9 +29,9 @@
 
                 <div class="form-group">
                   <label>Parámetro principal:</label>
-                  <mat-radio-group class="form-control radio" name="tipoFirma"
+                  <mat-radio-group class="form-control radio" name="tipoJuego" [(ngModel)]="tipoJuego"
                     style="border-color: transparent;">
-                    <mat-radio-button name="tipoJuego" value="puntaje" style="margin: 0px 10px 0px 10px" checked>
+                    <mat-radio-button name="tipoJuego" value="puntaje" style="margin: 0px 10px 0px 10px">
                       Puntaje límite
                     </mat-radio-button>
                     <mat-radio-button name="tipoJuego" value="turnos" style="margin: 0px 10px 0px 10px">
@@ -42,18 +42,18 @@
 
                 <div class="form-group">
                   <label>Valor límite:</label>
-                  <input type="number" class="form-control" name="valorLimite"
+                  <input type="number" class="form-control" name="valorLimite" [(ngModel)]="valorLimite"
                     placeholder="Valor límite" required/><br>
                 </div>
 
                 <div class="form-group">
                   <label>Nombre de usuario:</label>
-                  <input type="text" class="form-control" name="nombreUsuario"
-                    placeholder="Nombre de usuario" required (blur)="completar()"/><br>
+                  <input type="text" class="form-control" name="nombreUsuario" [(ngModel)]="nombreUsuario"
+                    placeholder="Nombre de usuario" required/><br>
                 </div>
 
                 <br>
-                <p><button class="btn btn-primary" (click)="redireccion()">
+                <p><button class="btn btn-primary" (click)="completar()">
                     Crear Sala
                   </button></p>
 

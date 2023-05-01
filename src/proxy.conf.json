@@ -1,0 +1,10 @@
+{
+  "http://127.0.0.1:8000/*": {
+    "target": "http://127.0.0.1:8000",
+    "secure": false
+  },
+  "http://127.0.0.1:8000/jugador/validar?nombreUsuario=*": {
+    "target": "http://127.0.0.1:8000/jugador/validar?nombreUsuario=",
+    "secure": false
+  }
+}
