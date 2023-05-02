@@ -13,8 +13,15 @@ export class HomeComponent implements OnInit {
   tipoJuego:String="puntaje";
   valorLimite:number=0;
   nombreUsuario:any;
-
+  capacidadSala:any=2;
   codigoRespuesta: any;
+  idJugador: any;
+  idTipoJuego: number=0;
+  puntaje: number=0;
+  turnos: number=0;
+  codigoRespuestaSala: any;
+  idSala: any;
+  identificador: any;
 
   constructor(public router: Router, private utilsservice:UtilsService) { }
 
@@ -48,19 +55,63 @@ export class HomeComponent implements OnInit {
       if(this.validarNombre()){
         this.utilsservice.validarUsuario(this.nombreUsuario).subscribe((data)=>{
           this.codigoRespuesta=data.code;
+          this.idJugador=data.idJugador;
+
+          if(this.tipoJuego==="puntaje"){
+            this.idTipoJuego=1;
+            this.puntaje=this.valorLimite;
+            this.turnos=9999;
+          }else{
+            this.idTipoJuego=2;
+            this.turnos=this.valorLimite;
+            this.puntaje=99999;
+          }
+
           console.log("codigoRespuesta:"+this.codigoRespuesta);
 
             if(this.codigoRespuesta==="Disponible" || this.codigoRespuesta==="Nuevo"){
-              Swal.fire(
-                {
-                  icon: 'success',
-                  title: 'Sala disponible',
-                  text: 'Sala creada correctamente',
-                  footer: data.info
+              this.utilsservice.crearSala(this.capacidadSala,this.idTipoJuego,this.puntaje,this.turnos,this.idJugador).subscribe((data)=>{
+                this.codigoRespuestaSala=data.code;
+                this.idSala=data.sala;
+                this.identificador=data.identificador;
+
+                console.log("codigoRespuestaSala:"+this.codigoRespuestaSala);
+                console.log("idSala:"+this.idSala);
+                console.log("identificador:"+this.identificador);
+
+                if(this.codigoRespuestaSala==="Ok"){
+                  Swal.fire(
+                    {
+                      icon: 'success',
+                      title: 'Sala disponible',
+                      text: 'Sala creada correctamente',
+                      footer: 'Puede continuar a la sala'
+                    }
+                  ).then(() => {
+                    // Aquí la alerta se ha cerrado
+                    this.router.navigate(['trivia']);
+                  });
+                }else{
+                  Swal.fire(
+                    {
+                      icon: 'error',
+                      title: 'Imposible crear sala',
+                      html: 'La sala no ha podido crearse correctamente',
+                      footer: 'No se ha podido completar el registro'
+                    }
+                  )
                 }
-              ).then(() => {
-                // Aquí la alerta se ha cerrado
-                this.router.navigate(['trivia']);
+              }, (err) => {
+                  Swal.fire(
+                    {
+                      icon: 'error',
+                      title: 'Imposible crear sala',
+                      html: 'La sala no ha podido crearse correctamente',
+                      footer: 'No se ha podido completar el registro'
+                    }
+                  )
+                //console.log("codigoRespuestaFalla:"+this.codigoRespuesta);
+                //debugger
               });
             }
             else{

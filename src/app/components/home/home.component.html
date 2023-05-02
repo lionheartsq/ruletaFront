@@ -40,10 +40,25 @@
                   </mat-radio-group><br>
                 </div>
 
-                <div class="form-group">
-                  <label>Valor límite:</label>
-                  <input type="number" class="form-control" name="valorLimite" [(ngModel)]="valorLimite"
-                    placeholder="Valor límite" required/><br>
+                <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Valor límite:</label>
+                      <input type="number" class="form-control" name="valorLimite" [(ngModel)]="valorLimite"
+                        placeholder="Valor límite" required/><br>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label [for]="capacidadSala">Capacidad Sala:</label>
+                      <select [(ngModel)]="capacidadSala" class="form-control customDropdown" name="capacidadSala" required>
+                        <option value="2">2 Jugadores</option>
+                        <option value="3">3 Jugadores</option>
+                        <option value="4">4 Jugadores</option>
+                        <option value="5">5 Jugadores</option>
+                      </select><br>
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">
